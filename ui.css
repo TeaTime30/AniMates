@@ -50,3 +50,43 @@ body{
 #colour{
 	height:200px;
 }
+img{
+	width:40px;
+	height:40px;
+	
+}
+#menu div{
+	display:inline-block;
+	vertical-align:top;
+	width:40px;
+	height:50px;
+	padding-right:50px;
+}
+
+#menu p{
+	padding-right:300px;
+	display:inline-block;
+}
+#tools div{
+	display:inline-block;
+	vertical-align:top;
+	width:40px;
+	height:50px;
+}
+#frame-tools{
+	height:153px;
+	width: 100px;
+	border: 1px solid black;
+	float:right;
+}
+#frame-tools div{
+	padding-bottom:10px;
+	
+}
+#select div{
+	display:inline-block;
+	vertical-align:top;
+	width:40px;
+	height:50px;
+	padding-left:10px;
+}
