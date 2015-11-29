@@ -1,7 +1,9 @@
+window.blockMenuHeaderScroll = false;
 window.onload = function() {
 	context = document.getElementById('canvas1').getContext("2d");
 
 	var cnvs = $("canvas");
+	var canvs = document.getElementById("canvas");
 	console.log("got stuff");
 	cnvs.mousedown(function(e) {
 		console.log("Mouse down handler");
@@ -15,6 +17,18 @@ window.onload = function() {
 		redraw();
 	});
 
+	cnvs.on("touchstart", function(e) {
+		console.log("touchstart");
+		var mouseX = e.originalEvent.touches[0].pageX - this.offsetLeft;
+		var mouseY = e.originalEvent.touches[0].pageY - this.offsetTop;
+		/*console.log(e.originalEvent.touches[0].pageX + "-" + this.offsetLeft + "=" + (e.pageX - this.offsetLeft));*/
+		/*console.log(e.pageY + "-" + this.offsetTop + "=" + (e.pageY - this.offsetTop));*/
+		blockMenuHeaderScroll = true;
+		paint = true;
+		addClick(mouseX, mouseY);
+		redraw();
+	});
+
 	cnvs.mousemove(function(e){
 	  if(paint){
 	    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
@@ -22,8 +36,26 @@ window.onload = function() {
 	  }
 	});
 
+	cnvs.on("touchmove", function(e) {
+		var mouseX = e.originalEvent.touches[0].pageX - this.offsetLeft;
+		var mouseY = e.originalEvent.touches[0].pageY - this.offsetTop;
+	  	if(paint){
+	    addClick(mouseX, mouseY, true);
+	    redraw();
+	  	}
+	  	if (blockMenuHeaderScroll)
+    	{
+        	e.preventDefault();
+    	}
+	});
+
 	cnvs.mouseup(function(e){
 	  paint = false;
+	});
+
+	canvs.addEventListener("touchend", function(e) {
+		paint = false;
+		blockMenuHeaderScroll = false;
 	});
 
 	var clickX = new Array();
