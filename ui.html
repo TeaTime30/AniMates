@@ -1,7 +1,9 @@
 <!DOCTYPE html>	
 <html>
 	<head>
-		<link rel="stylesheet"type="text/css" href="ui.css" >
+		<link rel="stylesheet" type="text/css" href="ui.css"/>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript" src="ui.js"></script>
 		<title>Ani.Mates Prototype</title>
 	</head>
 	<body>
@@ -13,7 +15,11 @@
 			<div id="colour"class="left-menu">Colours</div>
 		</div>
 		<div id="right-menu">
-			<div id="canvas"><canvas></canvas></div>
+			<div id="canvas">
+				<div id="canvas2">
+					<canvas id="canvas1" width="800px" height="400px"></canvas>
+				</div>
+			</div>
 			<div id="frame">Frames</div>
 			<div id="frame-tools"></div>
 		</div>
