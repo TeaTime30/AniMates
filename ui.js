@@ -1,10 +1,27 @@
+var curColour = "#000000";
+var clickColour = new Array();
+
 window.blockMenuHeaderScroll = false;
 window.onload = function() {
 	context = document.getElementById('canvas1').getContext("2d");
+	
+	var clr = $("#colour");
+    console.log(clr.value);
+    clr.mouseover(function(e) {
+    	console.log("mouseover");
+	    var colourTiles = $(".colours");
+	    for(var i = 0; i<colourTiles.length; i++){
+	    	colourTiles[i].addEventListener('click', function(e){
+	    		console.log(this.id);
+	    		curColour = this.id;
+	    	});
+	    }
+	});
 
 	var cnvs = $("canvas");
 	var canvs = document.getElementById("canvas");
-	console.log("got stuff");
+	//console.log("got stuff");
+
 	cnvs.mousedown(function(e) {
 		console.log("Mouse down handler");
 		var mouseX = e.pageX - this.offsetLeft;
@@ -68,12 +85,12 @@ window.onload = function() {
 	  clickX.push(x);
 	  clickY.push(y);
 	  clickDrag.push(dragging);
+	  clickColour.push(curColour);
 	}
 
 	function redraw(){
 	  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 	  
-	  context.strokeStyle = "#df4b26";
 	  context.lineJoin = "round";
 	  context.lineWidth = 5;
 				
@@ -87,6 +104,7 @@ window.onload = function() {
 	     context.lineTo(clickX[i], clickY[i]);
 	     console.log("(" + clickX[i] + "," + clickY[i] + ")");
 	     context.closePath();
+	  	context.strokeStyle = clickColour[i];
 	     context.stroke();
 	  }
 	}
