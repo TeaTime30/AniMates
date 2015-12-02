@@ -2,6 +2,7 @@ var curColour = "#000000";
 var clickColour = new Array();
 var undoVar = 0;
 var undoVars = new Array();
+var keys = [];
 
 window.blockMenuHeaderScroll = false;
 window.onload = function() {
@@ -80,8 +81,16 @@ window.onload = function() {
 	var clickDrag = new Array();
 	var paint;
 
+	$(document).keydown(function (event) {
+	    if (event.ctrlKey && event.keyCode == 90) {
+	        undo1();
+	    }
+	});
+
 	var undo = document.getElementById("undo");
-	undo.addEventListener("click", function(e) {
+	undo.addEventListener("click", undo1);
+
+	function undo1(e) {
 	  //console.log("Hi");
 	  for(var i = 0; i<undoVars[undoVars.length-1]+1; i++){
 		  clickX = clickX.splice(0,clickX.length-1);
@@ -92,7 +101,7 @@ window.onload = function() {
 	  undoVars.splice(0, undoVars.length-1);
 	  redraw();
    	  undoVar = 0;
-	});
+	}
 
 	function addClick(x, y, dragging)
 	{
