@@ -1,5 +1,7 @@
 var curColour = "#000000";
 var clickColour = new Array();
+var undoVar = 0;
+var undoVars = new Array();
 
 window.blockMenuHeaderScroll = false;
 window.onload = function() {
@@ -22,7 +24,7 @@ window.onload = function() {
 	cnvs.mousedown(function(e) {
 		var mouseX = e.pageX - this.offsetLeft;
 		var mouseY = e.pageY - this.offsetTop;
-
+		undoVar = 0;
 		paint = true;
 		addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
 		redraw();
@@ -31,6 +33,7 @@ window.onload = function() {
 	cnvs.on("touchstart", function(e) {
 		var mouseX = e.originalEvent.touches[0].pageX - this.offsetLeft;
 		var mouseY = e.originalEvent.touches[0].pageY - this.offsetTop;
+		undoVar = 0;
 		/*console.log(e.originalEvent.touches[0].pageX + "-" + this.offsetLeft + "=" + (e.pageX - this.offsetLeft));*/
 		/*console.log(e.pageY + "-" + this.offsetTop + "=" + (e.pageY - this.offsetTop));*/
 		blockMenuHeaderScroll = true;
@@ -42,6 +45,7 @@ window.onload = function() {
 	cnvs.mousemove(function(e){
 	  if(paint){
 	    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+	    undoVar += 1;
 	    redraw();
 	  }
 	});
@@ -49,6 +53,7 @@ window.onload = function() {
 	cnvs.on("touchmove", function(e) {
 		var mouseX = e.originalEvent.touches[0].pageX - this.offsetLeft;
 		var mouseY = e.originalEvent.touches[0].pageY - this.offsetTop;
+	    undoVar += 1;
 	  	if(paint){
 	    addClick(mouseX, mouseY, true);
 	    redraw();
@@ -61,10 +66,12 @@ window.onload = function() {
 
 	cnvs.mouseup(function(e){
 	  paint = false;
+	  undoVars.push(undoVar);
 	});
 
 	canvs.addEventListener("touchend", function(e) {
 		paint = false;
+	    undoVars.push(undoVar);
 		blockMenuHeaderScroll = false;
 	});
 
@@ -72,6 +79,20 @@ window.onload = function() {
 	var clickY = new Array();
 	var clickDrag = new Array();
 	var paint;
+
+	var undo = document.getElementById("undo");
+	undo.addEventListener("click", function(e) {
+	  //console.log("Hi");
+	  for(var i = 0; i<undoVars[undoVars.length-1]+1; i++){
+		  clickX = clickX.splice(0,clickX.length-1);
+		  clickY = clickY.splice(0,clickY.length-1);
+		  clickDrag = clickDrag.splice(0,clickDrag.length-1);
+		  clickColour = clickColour.splice(0,clickColour.length-1);
+	  }
+	  undoVars.splice(0, undoVars.length-1);
+	  redraw();
+   	  undoVar = 0;
+	});
 
 	function addClick(x, y, dragging)
 	{
@@ -82,6 +103,7 @@ window.onload = function() {
 	}
 
 	function redraw(){
+		//console.log("Hello World!");
 	  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 	  
 	  context.lineJoin = "round";
