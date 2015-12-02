@@ -3,6 +3,7 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="ui.css"/>
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="jscolor.min.js"></script>
 		<script type="text/javascript" src="ui.js"></script>
 		<title>Ani.Mates Prototype</title>
 	</head>
@@ -57,6 +58,27 @@
 						<button class="colours" id="#ff99cc" style="background-color:#ff99cc"></button>
 						<button class="colours" id="#ff0000" style="background-color:#ff0000"></button>
 				</div>
+				Custom Colours
+				<div>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+				</div>
+				<div>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+					<button class="jscolor {valueElement:null, onFineChange:'update(this)'}"></button>
+				</div>
+
+				<script>
+				function update(picker) {
+			    	curColour = picker.toHEXString();
+				}
+				</script>
 			</div>
 		</div>
 		<div id="right-menu">

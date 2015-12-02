@@ -6,13 +6,10 @@ window.onload = function() {
 	context = document.getElementById('canvas1').getContext("2d");
 	
 	var clr = $("#colour");
-    console.log(clr.value);
     clr.mouseover(function(e) {
-    	console.log("mouseover");
 	    var colourTiles = $(".colours");
 	    for(var i = 0; i<colourTiles.length; i++){
 	    	colourTiles[i].addEventListener('click', function(e){
-	    		console.log(this.id);
 	    		curColour = this.id;
 	    	});
 	    }
@@ -23,11 +20,8 @@ window.onload = function() {
 	//console.log("got stuff");
 
 	cnvs.mousedown(function(e) {
-		console.log("Mouse down handler");
 		var mouseX = e.pageX - this.offsetLeft;
 		var mouseY = e.pageY - this.offsetTop;
-		console.log(e.pageX + "-" + this.offsetLeft + "=" + (e.pageX - this.offsetLeft));
-		console.log(e.pageY + "-" + this.offsetTop + "=" + (e.pageY - this.offsetTop));
 
 		paint = true;
 		addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
@@ -35,7 +29,6 @@ window.onload = function() {
 	});
 
 	cnvs.on("touchstart", function(e) {
-		console.log("touchstart");
 		var mouseX = e.originalEvent.touches[0].pageX - this.offsetLeft;
 		var mouseY = e.originalEvent.touches[0].pageY - this.offsetTop;
 		/*console.log(e.originalEvent.touches[0].pageX + "-" + this.offsetLeft + "=" + (e.pageX - this.offsetLeft));*/
@@ -102,7 +95,6 @@ window.onload = function() {
 	       context.moveTo(clickX[i]-1, clickY[i]);
 	     }
 	     context.lineTo(clickX[i], clickY[i]);
-	     console.log("(" + clickX[i] + "," + clickY[i] + ")");
 	     context.closePath();
 	  	context.strokeStyle = clickColour[i];
 	     context.stroke();
