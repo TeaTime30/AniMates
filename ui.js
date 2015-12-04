@@ -1,7 +1,16 @@
 var curColour = "#000000";
+var clickX = new Array();
+var clickY = new Array();
+var clickDrag = new Array();
 var clickColour = new Array();
+var clickXBuff = new Array();
+var clickYBuff = new Array();
+var clickDragBuff = new Array();
+var clickColourBuff = new Array();
+var paint;
 var undoVar = 0;
 var undoVars = new Array();
+var redoVars = new Array();
 var keys = [];
 
 window.blockMenuHeaderScroll = false;
@@ -76,11 +85,6 @@ window.onload = function() {
 		blockMenuHeaderScroll = false;
 	});
 
-	var clickX = new Array();
-	var clickY = new Array();
-	var clickDrag = new Array();
-	var paint;
-
 	$(document).keydown(function (event) {
 	    if (event.ctrlKey && event.keyCode == 90) {
 	        undo1();
@@ -93,12 +97,18 @@ window.onload = function() {
 	function undo1(e) {
 	  //console.log("Hi");
 	  for(var i = 0; i<undoVars[undoVars.length-1]+1; i++){
+		  clickXBuff.push(clickX[clickX.length-1]);
+		  console.log(clickX[clickX.length-1]);
 		  clickX = clickX.splice(0,clickX.length-1);
+		  clickYBuff.push(clickY[clickY.length-1]);
 		  clickY = clickY.splice(0,clickY.length-1);
+		  clickDragBuff.push(clickDrag[clickDrag.length-1]);
 		  clickDrag = clickDrag.splice(0,clickDrag.length-1);
+		  clickColourBuff.push(clickColour[clickColour.length-1]);
 		  clickColour = clickColour.splice(0,clickColour.length-1);
 	  }
-	  undoVars.splice(0, undoVars.length-1);
+	  redoVars.push(undoVars[undoVars.length-1]);
+	  undoVars = undoVars.splice(0, undoVars.length-1);
 	  redraw();
    	  undoVar = 0;
 	}
@@ -127,9 +137,21 @@ window.onload = function() {
 	     }
 	     context.lineTo(clickX[i], clickY[i]);
 	     context.closePath();
-	  	context.strokeStyle = clickColour[i];
+	  	 context.strokeStyle = clickColour[i];
 	     context.stroke();
 	  }
 	}
+/*
+	var cnvs1 = document.getElementById("canvas1");
+	var addframe = document.getElementById("addframe");
+	addframe.addEventListener("click", function(e) {
+		console.log("Frames");
+		//var image = new Image();
+		var image = cnvs1.toDataURL("image/png");
+		var frame = document.getElementById("frm1");
+		window.open(image);
+		//return image;
+	});
+*/
 }
 
