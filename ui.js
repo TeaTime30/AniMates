@@ -1,13 +1,16 @@
 /**********************GLOBAL VARIABLES*********************/
 var curColour = "#000000";
+var curThickness = 5;
 var clickX = new Array();
 var clickY = new Array();
 var clickDrag = new Array();
 var clickColour = new Array();
+var clickThick = new Array();
 var clickXBuff = new Array();
 var clickYBuff = new Array();
 var clickDragBuff = new Array();
 var clickColourBuff = new Array();
+var clickThickBuff = new Array();
 var paint;
 var undoVar = 0;
 var undoVars = new Array();
@@ -16,10 +19,12 @@ var keys = [];
 
 window.blockMenuHeaderScroll = false;
 window.onload = function() {
+		$("#thickmenu").addClass("hide");
 	context = document.getElementById('canvas1').getContext("2d");
 	/***********************SELECTING A COLOUR*************************/
 	var clr = $("#colour");
     clr.mouseover(function(e) {
+		$("#thickmenu").addClass("hide");
 	    var colourTiles = $(".colours");
 	    for(var i = 0; i<colourTiles.length; i++){
 	    	colourTiles[i].addEventListener('click', function(e){
@@ -28,16 +33,29 @@ window.onload = function() {
 	    }
 	});
 
-	/***********************ERASER FUNCTION***************************/
+	/***********************ERASER FUNCTION************************/
 	var erase = document.getElementById("erase");
 	erase.addEventListener("click", function(e) {
 		curColour = "#ffffff";
+	});
+
+	/***********************LINE THICKNESS************************/
+	var thickness = document.getElementById("thickness");
+	thickness.addEventListener("click", function(e) {
+		$("#thickmenu").removeClass("hide");
+		var thickTiles = $(".thick");
+		for(var i = 0; i<thickTiles.length; i++){
+			thickTiles[i].addEventListener('click', function(e) {
+				curThickness = parseInt(this.id);
+			})
+		}
 	});
 
     /***********************PRESSING ON THE CANVAS***********************/
 	var cnvs = $("canvas");
 	var canvs = document.getElementById("canvas");
 	cnvs.mousedown(function(e) {
+		$("#thickmenu").addClass("hide");
 		var mouseX = e.pageX - this.offsetLeft;
 		var mouseY = e.pageY - this.offsetTop;
 		undoVar = 0;
@@ -47,6 +65,7 @@ window.onload = function() {
 	});
 
 	cnvs.on("touchstart", function(e) {
+		$("#thickmenu").addClass("hide");
 		var mouseX = e.originalEvent.touches[0].pageX - this.offsetLeft;
 		var mouseY = e.originalEvent.touches[0].pageY - this.offsetTop;
 		undoVar = 0;
@@ -104,6 +123,7 @@ window.onload = function() {
 	undo.addEventListener("click", undo1);
 
 	function undo1(e) {
+		$("#thickmenu").addClass("hide");
 	  for(var i = 0; i<undoVars[undoVars.length-1]+1; i++){
 		  clickXBuff.push(clickX[clickX.length-1]);
 		  clickX = clickX.splice(0,clickX.length-1);
@@ -113,6 +133,8 @@ window.onload = function() {
 		  clickDrag = clickDrag.splice(0,clickDrag.length-1);
 		  clickColourBuff.push(clickColour[clickColour.length-1]);
 		  clickColour = clickColour.splice(0,clickColour.length-1);
+		  clickThickBuff.push(clickThick[clickThick.length-1]);
+		  clickThick = clickThick.splice(0,clickThick.length-1);
 	  }
 	  redoVars.push(undoVars[undoVars.length-1]);
 	  undoVars = undoVars.splice(0, undoVars.length-1);
@@ -131,6 +153,7 @@ window.onload = function() {
 	redo.addEventListener("click", redo1);
 
 	function redo1(e) {
+		$("#thickmenu").addClass("hide");
 	  for(var i = 0; i<redoVars[redoVars.length-1]+1; i++){
 		  clickX.push(clickXBuff[clickXBuff.length-1]);
 		  clickXBuff = clickXBuff.splice(0,clickXBuff.length-1);
@@ -140,6 +163,8 @@ window.onload = function() {
 		  clickDragBuff = clickDragBuff.splice(0,clickDragBuff.length-1);
 		  clickColour.push(clickColourBuff[clickColourBuff.length-1]);
 		  clickColourBuff = clickColourBuff.splice(0,clickColourBuff.length-1);
+		  clickThick.push(clickThickBuff[clickThickBuff.length-1]);
+		  clickThickBuff = clickThickBuff.splice(0,clickThickBuff.length-1);
 	  }
 	  undoVars.push(redoVars[redoVars.length-1]);
 	  redoVars = redoVars.splice(0, redoVars.length-1);
@@ -154,6 +179,7 @@ window.onload = function() {
 	  clickY.push(y);
 	  clickDrag.push(dragging);
 	  clickColour.push(curColour);
+	  clickThick.push(curThickness);
 	}
 
 	function redraw(){
@@ -161,7 +187,6 @@ window.onload = function() {
 	  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 	  
 	  context.lineJoin = "round";
-	  context.lineWidth = 5;
 				
 	  for(var i=0; i < clickX.length; i++) {		
 	    context.beginPath();
@@ -173,6 +198,7 @@ window.onload = function() {
 	     context.lineTo(clickX[i], clickY[i]);
 	     context.closePath();
 	  	 context.strokeStyle = clickColour[i];
+	  	 context.lineWidth = clickThick[i];
 	     context.stroke();
 	  }
 	}
