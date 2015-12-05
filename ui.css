@@ -95,3 +95,15 @@ img{
 	height:50px;
 	padding-left:10px;
 }
+ul{
+	list-style-type: none;
+}
+#thickmenu{
+	background-color: #CBBD7C;
+	border: 1px;
+	width: 78px;
+}
+
+.hide{
+	opacity:0;
+}
