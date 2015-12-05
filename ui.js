@@ -19,8 +19,9 @@ var keys = [];
 
 window.blockMenuHeaderScroll = false;
 window.onload = function() {
-		$("#thickmenu").addClass("hide");
+	$("#thickmenu").addClass("hide");
 	context = document.getElementById('canvas1').getContext("2d");
+	
 	/***********************SELECTING A COLOUR*************************/
 	var clr = $("#colour");
     clr.mouseover(function(e) {
@@ -47,7 +48,7 @@ window.onload = function() {
 		for(var i = 0; i<thickTiles.length; i++){
 			thickTiles[i].addEventListener('click', function(e) {
 				curThickness = parseInt(this.id);
-			})
+			});
 		}
 	});
 
@@ -69,8 +70,6 @@ window.onload = function() {
 		var mouseX = e.originalEvent.touches[0].pageX - this.offsetLeft;
 		var mouseY = e.originalEvent.touches[0].pageY - this.offsetTop;
 		undoVar = 0;
-		/*console.log(e.originalEvent.touches[0].pageX + "-" + this.offsetLeft + "=" + (e.pageX - this.offsetLeft));*/
-		/*console.log(e.pageY + "-" + this.offsetTop + "=" + (e.pageY - this.offsetTop));*/
 		blockMenuHeaderScroll = true;
 		paint = true;
 		addClick(mouseX, mouseY);
@@ -183,7 +182,6 @@ window.onload = function() {
 	}
 
 	function redraw(){
-		//console.log("Hello World!");
 	  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
 	  
 	  context.lineJoin = "round";
