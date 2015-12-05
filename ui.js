@@ -95,10 +95,8 @@ window.onload = function() {
 	undo.addEventListener("click", undo1);
 
 	function undo1(e) {
-	  //console.log("Hi");
 	  for(var i = 0; i<undoVars[undoVars.length-1]+1; i++){
 		  clickXBuff.push(clickX[clickX.length-1]);
-		  console.log(clickX[clickX.length-1]);
 		  clickX = clickX.splice(0,clickX.length-1);
 		  clickYBuff.push(clickY[clickY.length-1]);
 		  clickY = clickY.splice(0,clickY.length-1);
@@ -141,7 +139,33 @@ window.onload = function() {
 	     context.stroke();
 	  }
 	}
-/*
+
+	$(document).keydown(function (event) {
+	    if (event.ctrlKey && event.keyCode == 89) {
+	        redo1();
+	    }
+	});
+
+	var redo = document.getElementById("redo");
+	redo.addEventListener("click", redo1);
+
+	function redo1(e) {
+	  for(var i = 0; i<redoVars[redoVars.length-1]+1; i++){
+		  clickX.push(clickXBuff[clickXBuff.length-1]);
+		  clickXBuff = clickXBuff.splice(0,clickXBuff.length-1);
+		  clickY.push(clickYBuff[clickYBuff.length-1]);
+		  clickYBuff = clickYBuff.splice(0,clickYBuff.length-1);
+		  clickDrag.push(clickDragBuff[clickDragBuff.length-1]);
+		  clickDragBuff = clickDragBuff.splice(0,clickDragBuff.length-1);
+		  clickColour.push(clickColourBuff[clickColourBuff.length-1]);
+		  clickColourBuff = clickColourBuff.splice(0,clickColourBuff.length-1);
+	  }
+	  undoVars.push(redoVars[redoVars.length-1]);
+	  redoVars = redoVars.splice(0, redoVars.length-1);
+	  redraw();
+
+	}
+
 	var cnvs1 = document.getElementById("canvas1");
 	var addframe = document.getElementById("addframe");
 	addframe.addEventListener("click", function(e) {
@@ -152,6 +176,6 @@ window.onload = function() {
 		window.open(image);
 		//return image;
 	});
-*/
+
 }
 
