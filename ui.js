@@ -1,3 +1,4 @@
+/**********************GLOBAL VARIABLES*********************/
 var curColour = "#000000";
 var clickX = new Array();
 var clickY = new Array();
@@ -16,7 +17,7 @@ var keys = [];
 window.blockMenuHeaderScroll = false;
 window.onload = function() {
 	context = document.getElementById('canvas1').getContext("2d");
-	
+	/***********************SELECTING A COLOUR*************************/
 	var clr = $("#colour");
     clr.mouseover(function(e) {
 	    var colourTiles = $(".colours");
@@ -27,10 +28,15 @@ window.onload = function() {
 	    }
 	});
 
+	/***********************ERASER FUNCTION***************************/
+	var erase = document.getElementById("erase");
+	erase.addEventListener("click", function(e) {
+		curColour = "#ffffff";
+	});
+
+    /***********************PRESSING ON THE CANVAS***********************/
 	var cnvs = $("canvas");
 	var canvs = document.getElementById("canvas");
-	//console.log("got stuff");
-
 	cnvs.mousedown(function(e) {
 		var mouseX = e.pageX - this.offsetLeft;
 		var mouseY = e.pageY - this.offsetTop;
@@ -52,6 +58,7 @@ window.onload = function() {
 		redraw();
 	});
 
+	/***********************DRAGGING ALONG THE CANVAS***********************/
 	cnvs.mousemove(function(e){
 	  if(paint){
 	    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
@@ -74,6 +81,7 @@ window.onload = function() {
     	}
 	});
 
+	/***********************STOP PAINTING***********************/
 	cnvs.mouseup(function(e){
 	  paint = false;
 	  undoVars.push(undoVar);
@@ -85,6 +93,7 @@ window.onload = function() {
 		blockMenuHeaderScroll = false;
 	});
 
+	/************************UNDO***********************/
 	$(document).keydown(function (event) {
 	    if (event.ctrlKey && event.keyCode == 90) {
 	        undo1();
@@ -111,6 +120,34 @@ window.onload = function() {
    	  undoVar = 0;
 	}
 
+	/*************************REDO************************/
+	$(document).keydown(function (event) {
+	    if (event.ctrlKey && event.keyCode == 89) {
+	        redo1();
+	    }
+	});
+
+	var redo = document.getElementById("redo");
+	redo.addEventListener("click", redo1);
+
+	function redo1(e) {
+	  for(var i = 0; i<redoVars[redoVars.length-1]+1; i++){
+		  clickX.push(clickXBuff[clickXBuff.length-1]);
+		  clickXBuff = clickXBuff.splice(0,clickXBuff.length-1);
+		  clickY.push(clickYBuff[clickYBuff.length-1]);
+		  clickYBuff = clickYBuff.splice(0,clickYBuff.length-1);
+		  clickDrag.push(clickDragBuff[clickDragBuff.length-1]);
+		  clickDragBuff = clickDragBuff.splice(0,clickDragBuff.length-1);
+		  clickColour.push(clickColourBuff[clickColourBuff.length-1]);
+		  clickColourBuff = clickColourBuff.splice(0,clickColourBuff.length-1);
+	  }
+	  undoVars.push(redoVars[redoVars.length-1]);
+	  redoVars = redoVars.splice(0, redoVars.length-1);
+	  redraw();
+
+	}
+
+	/****************************DRAWING FUNCTIONS*************************/
 	function addClick(x, y, dragging)
 	{
 	  clickX.push(x);
@@ -140,32 +177,7 @@ window.onload = function() {
 	  }
 	}
 
-	$(document).keydown(function (event) {
-	    if (event.ctrlKey && event.keyCode == 89) {
-	        redo1();
-	    }
-	});
-
-	var redo = document.getElementById("redo");
-	redo.addEventListener("click", redo1);
-
-	function redo1(e) {
-	  for(var i = 0; i<redoVars[redoVars.length-1]+1; i++){
-		  clickX.push(clickXBuff[clickXBuff.length-1]);
-		  clickXBuff = clickXBuff.splice(0,clickXBuff.length-1);
-		  clickY.push(clickYBuff[clickYBuff.length-1]);
-		  clickYBuff = clickYBuff.splice(0,clickYBuff.length-1);
-		  clickDrag.push(clickDragBuff[clickDragBuff.length-1]);
-		  clickDragBuff = clickDragBuff.splice(0,clickDragBuff.length-1);
-		  clickColour.push(clickColourBuff[clickColourBuff.length-1]);
-		  clickColourBuff = clickColourBuff.splice(0,clickColourBuff.length-1);
-	  }
-	  undoVars.push(redoVars[redoVars.length-1]);
-	  redoVars = redoVars.splice(0, redoVars.length-1);
-	  redraw();
-
-	}
-
+	/*************************CREATE FRAME***********************/
 	var cnvs1 = document.getElementById("canvas1");
 	var addframe = document.getElementById("addframe");
 	addframe.addEventListener("click", function(e) {
