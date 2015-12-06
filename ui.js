@@ -170,7 +170,7 @@ window.onload = function() {
 	  redraw();
 
 	}
-	
+
 
 	/****************************DRAWING FUNCTIONS*************************/
 	function addClick(x, y, dragging)
@@ -201,6 +201,18 @@ window.onload = function() {
 	     context.stroke();
 	  }
 	}
+
+
+	/*************************DRAW LINE***********************/
+	var line = document.getElementById("line");
+	line.addEventListener("click", function(e){
+	context.beginPath();
+	context.moveTo(100, 150);
+	context.lineTo(clickX,clickY);
+	context.stroke();
+
+	});
+	
 
 	/*************************CREATE FRAME***********************/
 	var cnvs1 = document.getElementById("canvas1");

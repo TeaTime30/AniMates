@@ -21,7 +21,7 @@
 
 #left-menu{
 	width: 200px;
-	height:930px;
+	height:800px;
 	border:1px solid black;
 	vertical-align:top;
 	display:inline-block;
@@ -29,43 +29,52 @@
 
 
 #tools{
-	height:100px;
+	height:200px;
 	border-bottom:1px solid black;
 }
 
 #tools div{
-	display:inline-block;
+	display:inline;
 	vertical-align:top;
+	float: left;
 	
 }
+
 
 ul{
 	list-style-type: none;
 }
 #thickmenu{
 	background-color: #E2D38A;
-	border: 1px;
-	width: 78px;
+
 }
+
 
 .hide{
 	opacity:0;
 }
 
+#brush{
+	margin-left: 10px;
+	margin-right: 5px;
+}
+
+#pencil{
+	margin-right: 20px;
+	margin-left:5px;
+}
+
+
 #select{
-	height:100px;
-	border-bottom:1px solid black;
+	margin-right: 5px;
+	margin-left: 10px;
 }
-
-
-#select div{
-	display:inline-block;
-	vertical-align:top;
-	width:40px;
-	height:50px;
-	padding-left:10px;
+#paint{
+	margin-right: 5px;
 }
-
+#text{
+	margin-right: 5px;
+}
 
 #shapes div{
 	display:inline;
@@ -79,27 +88,6 @@ ul{
 	border-bottom: 1px solid black;
 }
 
-#misc{
-	height:100px;
-	border-bottom:1px solid black;
-}
-
-#misc div{
-	display:inline;
-	width: 40px;
-	height:50px;
-	padding-left: 5px;
-}
-
-
-#misc{
-	height:100px;
-	border-bottom:1px solid black;
-}
-
-#colour{
-	height:200px;
-}
 
 #colour{
 	height:200px;
@@ -129,21 +117,23 @@ ul{
 
 #canvas1 {
 	width:800px;
-	height:600px;
+	height:500px;
 	border: 1px solid black;
+	cursor: crosshair;
+
 
 }
 
 #canvas{
 	padding: 20px 20px 20px 20px;
-	cursor: crosshair;
 	border:1px solid black;
+	
 	
 }
 
 #frameandtools{
 	width:845px;
-	height:280px;
+	height:245px;
 	border: 1px solid black;
 	border-top: solid white;
 	
@@ -151,7 +141,7 @@ ul{
 
 #frames{
 	width:710px;
-	height: 195px;
+	height: 160px;
 	border: 1px solid black;
 	border-left: solid white;
 	border-bottom: solid white;
