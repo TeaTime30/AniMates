@@ -127,13 +127,6 @@ ul{
 	display:inline-block;
 }
 
-canvas {
-	width:800px;
-	height:600px;
-	border: 1px solid black;
-
-}
-
 #canvas1 {
 	width:800px;
 	height:600px;
