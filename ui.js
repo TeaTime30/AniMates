@@ -176,7 +176,6 @@ window.onload = function() {
 
 	/****************************ADDING FRAMES*************************/
 	var frame = canvs.toDataURL("image/png");
-	document.write('<img src"'+img+'"/>');
 
 
 
