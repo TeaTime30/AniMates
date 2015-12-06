@@ -141,7 +141,7 @@ ul{
 	
 }
 
-#frame{
+#frameandtools{
 	width:845px;
 	height:280px;
 	border: 1px solid black;
@@ -149,22 +149,36 @@ ul{
 	
 }
 
-#frame-tools{
-	height:280px;
-	width: 100px;
+#frames{
+	width:710px;
+	height: 195px;
 	border: 1px solid black;
-	border-bottom-color: white;
-	border-right-color: white;
-	border-top-color: white;
+	border-left: solid white;
+	border-bottom: solid white;
+	padding-top:10px;
+	padding-left:10px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	float: left;
+
+}
+#frame-tools{
+	height:195px;
 	float:right;
 }
 
 #frame-tools div{
 	padding-bottom:10px;
-	padding-top: 25px;
-	padding-left: 5px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 35px;
 	padding-bottom: 5px;
+
 	
+}
+#player{
+	text-align: center;
+	padding-bottom: 5px;
 }
 
 img{

@@ -15,7 +15,6 @@ var paint;
 var undoVar = 0;
 var undoVars = new Array();
 var redoVars = new Array();
-var frames = new Array();
 var keys = [];
 
 window.blockMenuHeaderScroll = false;
@@ -171,13 +170,7 @@ window.onload = function() {
 	  redraw();
 
 	}
-
-
-
-	/****************************ADDING FRAMES*************************/
-	var frame = canvs.toDataURL("image/png");
-
-
+	
 
 	/****************************DRAWING FUNCTIONS*************************/
 	function addClick(x, y, dragging)
