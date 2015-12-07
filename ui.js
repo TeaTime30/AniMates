@@ -110,6 +110,7 @@ window.onload = function() {
 		paint = false;
 	    undoVars.push(undoVar);
 		blockMenuHeaderScroll = false;
+	    frameDraw();
 	});
 
 	/************************UNDO***********************/

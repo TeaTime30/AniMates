@@ -180,3 +180,9 @@ img{
 body{
 	white-space: nowrap;
 }
+
+#frmimg{
+	height:120px;
+	width:180px;
+	border:1px solid black;
+}
