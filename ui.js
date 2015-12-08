@@ -274,7 +274,7 @@ window.onload = function() {
 			playScreen.setAttribute("id", "playDiv");
 			playScreen.src = images2[i];
 			$("body").prepend(playScreen);
-			$("#playDiv").delay(500*i).fadeIn(400).fadeOut(100);
+			$("#playDiv").delay(500*(i+1)).fadeIn(400).fadeOut(100);
 			console.log(i);
 		}
 		$("#playDiv").remove();
