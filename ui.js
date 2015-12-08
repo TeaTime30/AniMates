@@ -1,22 +1,22 @@
 /**********************GLOBAL VARIABLES*********************/
 var curColour = "#000000";
 var curThickness = 5;
-var clickX = new Array();
-var clickY = new Array();
-var clickDrag = new Array();
-var clickColour = new Array();
-var clickThick = new Array();
-var clickXBuff = new Array();
-var clickYBuff = new Array();
-var clickDragBuff = new Array();
-var clickColourBuff = new Array();
-var clickThickBuff = new Array();
+var clickX = [];
+var clickY = [];
+var clickDrag = [];
+var clickColour = [];
+var clickThick = [];
+var clickXBuff = [];
+var clickYBuff = [];
+var clickDragBuff = [];
+var clickColourBuff = [];
+var clickThickBuff = [];
 var curFrame = 1;
-var images = new Array();
+var images = [];
 var paint;
 var undoVar = 0;
-var undoVars = new Array();
-var redoVars = new Array();
+var undoVars = [];
+var redoVars = [];
 var keys = [];
 
 window.blockMenuHeaderScroll = false;
@@ -221,14 +221,14 @@ window.onload = function() {
 
 	/*************************CREATE FRAME***********************/
 	var cnvs1 = document.getElementById("canvas1");
-	//var addframe = document.getElementById("addframe");
-	//addframe.addEventListener("click", 
 	function frameDraw() {
 		console.log("Frames");
 		var image = new Image();
 		var image = cnvs1.toDataURL("image/png");
 		images.push(image);
-		var frameimg = document.getElementById("frmimg");
+		var val = "frmimg"+curFrame;
+		console.log(val);
+		var frameimg = document.getElementById(val);
 		frameimg.src = image;
 		
 	};
@@ -236,11 +236,28 @@ window.onload = function() {
 	/*************************NEW FRAME************************/
 	var addFrame = document.getElementById("addframe");
 	addFrame.addEventListener("click", function(e){
-		curFrame +=1;
 		var img2 = document.createElement("img");
 		img2.className = "frame";
-		$("#frmimg").after(img2);
+		img2.setAttribute("id", "frmimg"+(curFrame+1));
+		$("#frmimg"+curFrame).after(img2);
+		reset1();
+		curFrame +=1;
 	});
+
+	function reset1(){		
+		 clickX = [];
+		 clickY = [];
+		 clickDrag = [];
+		 clickColour = [];
+		 clickThick = [];
+		 clickXBuff = [];
+		 clickYBuff = [];
+		 clickDragBuff = [];
+		 clickColourBuff = [];
+		 clickThickBuff = [];
+		 undovars = [];
+		 redovars = [];
+	}
 
 }
 
