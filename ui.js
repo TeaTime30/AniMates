@@ -11,6 +11,8 @@ var clickYBuff = new Array();
 var clickDragBuff = new Array();
 var clickColourBuff = new Array();
 var clickThickBuff = new Array();
+var curFrame = 1;
+var images = new Array();
 var paint;
 var undoVar = 0;
 var undoVars = new Array();
@@ -141,7 +143,7 @@ window.onload = function() {
 	  undoVars = undoVars.splice(0, undoVars.length-1);
 	  redraw();
    	  undoVar = 0;
-	   frameDraw();
+	  frameDraw();
 	}
 
 	/*************************REDO************************/
@@ -225,10 +227,20 @@ window.onload = function() {
 		console.log("Frames");
 		var image = new Image();
 		var image = cnvs1.toDataURL("image/png");
+		images.push(image);
 		var frameimg = document.getElementById("frmimg");
 		frameimg.src = image;
 		
 	};
+
+	/*************************NEW FRAME************************/
+	var addFrame = document.getElementById("addframe");
+	addFrame.addEventListener("click", function(e){
+		curFrame +=1;
+		var img2 = document.createElement("img");
+		img2.className = "frame";
+		$("#frmimg").after(img2);
+	});
 
 }
 
