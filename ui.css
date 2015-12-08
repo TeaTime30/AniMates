@@ -180,3 +180,9 @@ img{
 body{
 	white-space: nowrap;
 }
+
+.frame{
+	height:120px;
+	width:170px;
+	border:1px solid black;
+}

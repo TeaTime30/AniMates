@@ -103,12 +103,14 @@ window.onload = function() {
 	cnvs.mouseup(function(e){
 	  paint = false;
 	  undoVars.push(undoVar);
+	  frameDraw();
 	});
 
 	canvs.addEventListener("touchend", function(e) {
 		paint = false;
 	    undoVars.push(undoVar);
 		blockMenuHeaderScroll = false;
+	    frameDraw();
 	});
 
 	/************************UNDO***********************/
@@ -139,6 +141,7 @@ window.onload = function() {
 	  undoVars = undoVars.splice(0, undoVars.length-1);
 	  redraw();
    	  undoVar = 0;
+	   frameDraw();
 	}
 
 	/*************************REDO************************/
@@ -168,7 +171,7 @@ window.onload = function() {
 	  undoVars.push(redoVars[redoVars.length-1]);
 	  redoVars = redoVars.splice(0, redoVars.length-1);
 	  redraw();
-
+	  frameDraw();
 	}
 
 
@@ -216,15 +219,16 @@ window.onload = function() {
 
 	/*************************CREATE FRAME***********************/
 	var cnvs1 = document.getElementById("canvas1");
-	var addframe = document.getElementById("addframe");
-	addframe.addEventListener("click", function(e) {
+	//var addframe = document.getElementById("addframe");
+	//addframe.addEventListener("click", 
+	function frameDraw() {
 		console.log("Frames");
-		//var image = new Image();
+		var image = new Image();
 		var image = cnvs1.toDataURL("image/png");
-		var frame = document.getElementById("frm1");
-		window.open(image);
-		//return image;
-	});
+		var frameimg = document.getElementById("frmimg");
+		frameimg.src = image;
+		
+	};
 
 }
 
