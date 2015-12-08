@@ -181,8 +181,8 @@ body{
 	white-space: nowrap;
 }
 
-#frmimg{
+.frame{
 	height:120px;
-	width:180px;
+	width:170px;
 	border:1px solid black;
 }

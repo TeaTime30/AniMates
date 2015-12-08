@@ -141,6 +141,7 @@ window.onload = function() {
 	  undoVars = undoVars.splice(0, undoVars.length-1);
 	  redraw();
    	  undoVar = 0;
+	   frameDraw();
 	}
 
 	/*************************REDO************************/
@@ -170,7 +171,7 @@ window.onload = function() {
 	  undoVars.push(redoVars[redoVars.length-1]);
 	  redoVars = redoVars.splice(0, redoVars.length-1);
 	  redraw();
-
+	  frameDraw();
 	}
 
 
