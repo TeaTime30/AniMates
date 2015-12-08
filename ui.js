@@ -1,23 +1,24 @@
 /**********************GLOBAL VARIABLES*********************/
 var curColour = "#000000";
 var curThickness = 5;
-var clickX = [];
-var clickY = [];
-var clickDrag = [];
-var clickColour = [];
-var clickThick = [];
-var clickXBuff = [];
-var clickYBuff = [];
-var clickDragBuff = [];
-var clickColourBuff = [];
-var clickThickBuff = [];
+var clickX = new Array();
+var clickY = new Array();
+var clickDrag = new Array();
+var clickColour = new Array();
+var clickThick = new Array();
+var clickXBuff = new Array();
+var clickYBuff = new Array();
+var clickDragBuff = new Array();
+var clickColourBuff = new Array();
+var clickThickBuff = new Array();
 var curFrame = 1;
-var images = [];
+var images = new Array();
+var images2 = new Array();
 var paint;
 var undoVar = 0;
-var undoVars = [];
-var redoVars = [];
-var keys = [];
+var undoVars = new Array();
+var redoVars = new Array();
+var keys = new Array();
 
 window.blockMenuHeaderScroll = false;
 window.onload = function() {
@@ -227,15 +228,16 @@ window.onload = function() {
 		var image = cnvs1.toDataURL("image/png");
 		images.push(image);
 		var val = "frmimg"+curFrame;
-		console.log(val);
 		var frameimg = document.getElementById(val);
-		frameimg.src = image;
-		
+		frameimg.src = image;	
 	};
 
 	/*************************NEW FRAME************************/
 	var addFrame = document.getElementById("addframe");
 	addFrame.addEventListener("click", function(e){
+		var image2 = new Image();
+		var image2 = cnvs1.toDataURL("image/png");
+		images2.push(image2);
 		var img2 = document.createElement("img");
 		img2.className = "frame";
 		img2.setAttribute("id", "frmimg"+(curFrame+1));
@@ -258,6 +260,25 @@ window.onload = function() {
 		 undovars = [];
 		 redovars = [];
 	}
+
+	/***********************PLAY ANIMATION*********************/
+	var play = document.getElementById("play");
+	var j = 0;
+	var id;
+	play.addEventListener("click", function(e){
+		var image2 = new Image();
+		var image2 = cnvs1.toDataURL("image/png");
+		images2.push(image2);
+		for(var i=0; i<images2.length; i++){
+			var playScreen = document.createElement("img");
+			playScreen.setAttribute("id", "playDiv");
+			playScreen.src = images2[i];
+			$("body").prepend(playScreen);
+			$("#playDiv").delay(500*i).fadeIn(400).fadeOut(100);
+			console.log(i);
+		}
+		$("#playDiv").remove();
+	});
 
 }
 
