@@ -127,9 +127,11 @@
 				<canvas id="canvas1" width="800px" height="400px"></canvas>
 			</div>
 			<div id="frameandtools"><div>FRAMES</div>
-
+<<<<<<< HEAD
+				<div id ="player"><img src="icons/reverse.png"><img src="icons/pause.png"><img src="icons/play.png"><img src="icons/fastforward.png"></div>
+=======
 				<div id ="player"><img src="icons/reverse.png"><img src="icons/pause.png"><img src="icons/stop.png"><img id="play" src="icons/play.png"><img src="icons/fastforward.png"></div>
-
+>>>>>>> d5ab1df7486a3dfb1e0168f6be341cd54d2d5b2d
 				<div id="frames">
 					<img class="frame" id = "frmimg1" src=""></img>
 					<!-- <img class="frame" id = "frmimg1" src=""></img> -->
