@@ -44,11 +44,17 @@
 ul{
 	list-style-type: none;
 }
+
 #thickmenu{
 	background-color: #E2D38A;
-
+	height: 110px;
+	width: 78px;
+	position: absolute;
 }
 
+.thick {
+	margin-bottom: 10px;
+}
 
 .hide{
 	opacity:0;
