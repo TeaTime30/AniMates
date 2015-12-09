@@ -266,6 +266,9 @@ window.onload = function() {
 	var j = 0;
 	var id;
 	play.addEventListener("click", function(e){
+		var time = parseInt(document.getElementById('frms').value);
+		var sec = 60/time;
+		var msec = sec*1000;
 		var image2 = new Image();
 		var image2 = cnvs1.toDataURL("image/png");
 		images2.push(image2);
@@ -274,7 +277,7 @@ window.onload = function() {
 			playScreen.setAttribute("id", "playDiv");
 			playScreen.src = images2[i];
 			$("body").prepend(playScreen);
-			$("#playDiv").delay(500*(i+1)).fadeIn(400).fadeOut(100);
+			$("#playDiv").delay(msec*(i+1)).fadeIn(msec-100).fadeOut(100);
 			console.log(i);
 		}
 		$("#playDiv").remove();
