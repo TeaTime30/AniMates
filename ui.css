@@ -1,7 +1,7 @@
 
 #menu{
 	width:1050px;
-	height:50px;
+	height:75px;
 	border: 1px solid black;	
 	border-bottom: solid white;
 }
@@ -15,13 +15,13 @@
 }
 
 #menu p{
-	padding-right:300px;
+	padding-right:250px;
 	display:inline-block;
 }
 
 #left-menu{
 	width: 200px;
-	height:670px;
+	height:690px;
 	border:1px solid black;
 	vertical-align:top;
 	display:inline-block;
@@ -137,7 +137,7 @@ ul{
 
 #frameandtools{
 	width:845px;
-	height:220px;
+	height:235px;
 	border: 1px solid black;
 	border-top: solid white;
 	
@@ -145,7 +145,7 @@ ul{
 
 #frames{
 	width:710px;
-	height: 150px;
+	height: 170px;
 	border: 1px solid black;
 	border-left: solid white;
 	border-bottom: solid white;
@@ -157,20 +157,31 @@ ul{
 
 }
 #frame-tools{
-	height:150px;
-	float:right;
-	vertical-align:top;
-}
+	height:250px;
+	width: 121px;
+	overflow: hidden;
+	}
 
 #frame-tools div{
-	padding-bottom:10px;
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 35px;
+	padding-bottom:5px;
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
 	padding-bottom: 5px;
-
 	
 }
+#fft{
+	width: 849px ;
+	height: 188px ;
+}
+
+figure{
+	margin-right: 5px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
 #player{
 	text-align: center;
 	padding-bottom: 3px;
@@ -189,6 +200,11 @@ img{
 
 body{
 	white-space: nowrap;
+}
+
+figure{
+	width: 40px;
+	height: 40px;
 }
 
 .frame{
