@@ -40,6 +40,7 @@ window.onload = function() {
 	/***********************ERASER FUNCTION************************/
 	var erase = document.getElementById("erase");
 	erase.addEventListener("click", function(e) {
+		$("#thickmenu").addClass("hide");
 		curColour = "#ffffff";
 	});
 

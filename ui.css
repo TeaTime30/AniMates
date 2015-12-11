@@ -21,7 +21,7 @@
 
 #left-menu{
 	width: 200px;
-	height:690px;
+	height:680px;
 	border:1px solid black;
 	vertical-align:top;
 	display:inline-block;
@@ -124,22 +124,20 @@ ul{
 #canvas1 {
 	width:800px;
 	height:400px;
-	border: 1px solid black;
 	cursor: crosshair;
 
 
 }
 
 #canvas{
-	padding: 20px 20px 20px 20px;
-	border:1px solid black;
+	
+	border:20px solid gray;
 }
 
 #frameandtools{
 	width:845px;
 	height:235px;
 	border: 1px solid black;
-	border-top: solid white;
 	
 }
 
