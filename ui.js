@@ -33,8 +33,10 @@ window.onload = function() {
 	    for(var i = 0; i<colourTiles.length; i++){
 	    	colourTiles[i].addEventListener('click', function(e){
 	    		curColour = this.id;
+
 	    	});
 	    }
+	    console.log(curColour);
 	});
 
 	/***********************ERASER FUNCTION************************/
