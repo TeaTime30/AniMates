@@ -1,13 +1,13 @@
+/**********************GLOBAL VARIABLES*********************/
+var curColour = "#000000";
+var curThickness = 5;
+var curFrame = 1;
+var images = new Array();
+var undoindex = -1;
+var undoArr = new Array();
+
 if(window.addEventListener) {
 	window.addEventListener('load', function () {
-
-		/**********************GLOBAL VARIABLES*********************/
-		var curColour = "#000000";
-		var curThickness = 5;
-		var curFrame = 1;
-		var images = new Array();
-		var undoindex = -1;
-		var undoArr = new Array();
 
 		/********************** INITIALISE CANVAS AND CONTEXT *********************/
 
@@ -62,14 +62,14 @@ if(window.addEventListener) {
 
 		/********************** DRAWING ON CONTEXT *********************/
 
-  		temp_context.lineWidth = curThickness;
-  		temp_context.lineJoin = 'round';
-  		temp_context.lineCap = 'round';
-  		temp_context.strokeStyle = curColour;
-  		temp_context.fillstyle =curColour;
-  		uPush();
-
 		temp_canvas.addEventListener('mousedown', function(e){
+
+	  		temp_context.lineWidth = curThickness;
+	  		temp_context.lineJoin = 'round';
+	  		temp_context.lineCap = 'round';
+	  		temp_context.strokeStyle = curColour;
+	  		temp_context.fillstyle =curColour;
+	  		uPush();
 			$("#thickmenu").addClass("hide");
 			mouse.x = typeof e.offsetX !== 'undefine' ? e.offsetX : e.layerX;
   			mouse.y = typeof e.offsetY !== 'undefined' ? e.offsetY : e.layerY;
@@ -255,15 +255,9 @@ if(window.addEventListener) {
  			for( var i = 0; i< colourTiles.length; i++){
  				colourTiles[i].addEventListener('click', function(e){
  					curColour = this.id; 				
-  					temp_context.strokeStyle = curColour;
-  					temp_context.fillstyle =curColour;
  				});
  			}
  		});
-
- 		function update(picker) {
-			curColour = picker.toHEXString();
-		}
 
  	
 		/***********************SELECTING LINE WEIGHT *************************/
