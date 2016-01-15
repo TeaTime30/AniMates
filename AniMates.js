@@ -174,56 +174,62 @@ if(window.addEventListener) {
 			temp_canvas.removeEventListener('mousemove', onText,false);
 			temp_canvas.removeEventListener('mousemove', onPencil, false);
 
-    		//Not working D:
-    		var lines = textarea.value.split('\n');
-			var processed_lines= [];
+    		if (tool == 'text'){
 
-			for (var i = 0; i< lines.length; i++){
-				var chars = lines[i].length;
+    			var lines = textarea.value.split('\n');
+				var processed_lines= [];
 
-				for(var j; j< chars; j++){
-					var text_node = document.createTextNode(lines[i][j]);
-					temp_txt_context.appendChild(text_node);
+				for (var i = 0; i< lines.length; i++){
+					var chars = lines[i].length;
 
-					temp_txt_context.style.position = 'absolute';
-					temp_txt_context.style.visibility = 'hidden';
-					temp_txt_context.style.display = 'block';
+					for(var j; j< chars; j++){
+						var text_node = document.createTextNode(lines[i][j]);
+						temp_txt_context.appendChild(text_node);
 
-					var width = temp_txt_context.offsetWidth;
-					var height = temp_txt_context.offsetHeight;
+						temp_txt_context.style.position = 'absolute';
+						temp_txt_context.style.visibility = 'hidden';
+						temp_txt_context.style.display = 'block';
 
-					temp_txt_context.style.position = '';
-					temp_txt_context.style.visibility = '';
-					temp_txt_context.style.display = 'none';
+						var width = temp_txt_context.offsetWidth;
+						var height = temp_txt_context.offsetHeight;
 
-					if (width > parseInt(textarea.style.width)) {
-    	           		 break;
-    	        	}
-    	   		}
+						temp_txt_context.style.position = '';
+						temp_txt_context.style.visibility = '';
+						temp_txt_context.style.display = 'none';
+
+						if (width > parseInt(textarea.style.width)) {
+    		           		 break;
+    		        	}
+    	   			}
     	     
-    	   		processed_lines.push(temp_txt_context.textContent);
-    	    	temp_txt_context.innerHTML = '';
-    		}
+    	  	 		processed_lines.push(temp_txt_context.textContent);
+    	  		  	temp_txt_context.innerHTML = '';
+    			}
     	 
-   			var ta_comp_style = getComputedStyle(textarea);
-    		var fs = ta_comp_style.getPropertyValue('font-size');
-    		var ff = ta_comp_style.getPropertyValue('font-family');
-    	 
-    		temp_context.font = fs + ' ' + ff;
-    		temp_context.textBaseline = 'top';
-    	 
-    		for (var n = 0; n < processed_lines.length; n++) {
-    	    	var processed_line = processed_lines[n];
-    	    	 
-   		     	temp_context.fillText(processed_line,  parseInt(textarea.style.left), parseInt(textarea.style.top) + n*parseInt(fs) );
-   		 	}
+   				var ta_comp_style = getComputedStyle(textarea);
+    			var fs = ta_comp_style.getPropertyValue('font-size');
+    			var ff = ta_comp_style.getPropertyValue('font-family');
+    	 	
+    			temp_context.font = fs + ' ' + ff;
+    			temp_context.textBaseline = 'top';
+    		 
+    			for (var n = 0; n < processed_lines.length; n++) {
+    		    	var processed_line = processed_lines[n];
+    		    	 
+   			     	temp_context.fillText(processed_line,  parseInt(textarea.style.left), parseInt(textarea.style.top) + n*parseInt(fs) );
+   			 	}
    	      
-   			context.drawImage(temp_canvas, 0, 0);
+   				context.drawImage(temp_canvas, 0, 0);
 
-    		temp_context.clearRect(0, 0, temp_canvas.width, temp_canvas.height);
+    			temp_context.clearRect(0, 0, temp_canvas.width, temp_canvas.height);
     	 
-    		textarea.style.display = 'none';
-    		textarea.value = '';
+    			textarea.style.display = 'none';
+    			textarea.value = '';
+
+    		}
+
+    		context.drawImage(temp_canvas,0,0);
+    		temp_context.clearRect(0,0,temp_canvas.width,temp_canvas.height);
 
     		points = [];
 
